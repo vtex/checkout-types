@@ -1,7 +1,7 @@
 {
-  "name": "foobar",
-  "version": "0.0.0",
-  "description": "",
+  "name": "@vtex/checkout-types",
+  "version": "0.1.0",
+  "description": "Checkout types definition",
   "cdn": "dist/index.umd.js",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
