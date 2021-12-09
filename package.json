@@ -1,6 +1,6 @@
 {
   "name": "@vtex/checkout-types",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Checkout types definition",
   "cdn": "dist/index.umd.js",
   "main": "dist/index.js",
@@ -36,8 +36,8 @@
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.27.3",
     "ts-jest": "^26.4.1",
-    "typedoc": "^0.19.2",
-    "typedoc-plugin-markdown": "^3.0.8",
+    "typedoc": "^0.22.10",
+    "typedoc-plugin-markdown": "^3.11.7",
     "typescript": "^4.0.3"
   },
   "repository": {

@@ -74,7 +74,7 @@ export declare type AssemblyOptionInput = {
     quantity?: Maybe<Scalars['Int']>;
     seller?: Maybe<Scalars['String']>;
     inputValues?: Maybe<Scalars['InputValues']>;
-    options?: Maybe<Array<AssemblyOptionInput>>;
+    options?: Maybe<AssemblyOptionInput[]>;
 };
 export declare type AssemblyOptionItem = {
     __typename?: 'AssemblyOptionItem';
@@ -89,7 +89,7 @@ export declare type AssemblyOptionType = {
     quantity?: Maybe<Scalars['Int']>;
     seller?: Maybe<Scalars['String']>;
     inputValues?: Maybe<Scalars['InputValues']>;
-    options?: Maybe<Array<AssemblyOptionType>>;
+    options?: Maybe<AssemblyOptionType[]>;
 };
 export declare type Attachment = {
     __typename?: 'Attachment';
@@ -127,8 +127,8 @@ export declare type CheckoutProfile = {
     __typename?: 'CheckoutProfile';
     userProfileId?: Maybe<Scalars['String']>;
     profileProvider?: Maybe<Scalars['String']>;
-    availableAccounts: Array<AvailableAccount>;
-    availableAddresses: Array<Address>;
+    availableAccounts: AvailableAccount[];
+    availableAddresses: Address[];
     userProfile?: Maybe<UserProfile>;
 };
 export declare type ClientData = {
@@ -208,16 +208,16 @@ export declare type InstallmentOption = {
     paymentName?: Maybe<Scalars['String']>;
     paymentGroupName?: Maybe<Scalars['String']>;
     value: Scalars['Float'];
-    installments: Array<Installment>;
+    installments: Installment[];
 };
 export declare type Item = {
     __typename?: 'Item';
     additionalInfo?: Maybe<ItemAdditionalInfo>;
     assemblyOptions?: Maybe<AssemblyOptionItem>;
     availability?: Maybe<Scalars['String']>;
-    attachmentOfferings: Array<AttachmentOffering>;
-    attachments: Array<Attachment>;
-    bundleItems: Array<Item>;
+    attachmentOfferings: AttachmentOffering[];
+    attachments: Attachment[];
+    bundleItems: Item[];
     detailUrl?: Maybe<Scalars['String']>;
     id: Scalars['ID'];
     imageUrls?: Maybe<ImageUrls>;
@@ -225,7 +225,7 @@ export declare type Item = {
     manualPrice?: Maybe<Scalars['Float']>;
     measurementUnit?: Maybe<Scalars['String']>;
     name?: Maybe<Scalars['String']>;
-    offerings: Array<Offering>;
+    offerings: Offering[];
     options?: Maybe<Array<Maybe<AssemblyOptionType>>>;
     parentAssemblyBinding?: Maybe<Scalars['String']>;
     parentItemIndex?: Maybe<Scalars['Int']>;
@@ -242,10 +242,10 @@ export declare type Item = {
     sellingPrice?: Maybe<Scalars['Float']>;
     sellingPriceWithAssemblies?: Maybe<Scalars['Float']>;
     skuName?: Maybe<Scalars['String']>;
-    skuSpecifications: Array<SkuSpecification>;
+    skuSpecifications: SkuSpecification[];
     uniqueId: Scalars['String'];
     unitMultiplier?: Maybe<Scalars['Float']>;
-    priceTags: Array<PriceTag>;
+    priceTags: PriceTag[];
 };
 export declare type ItemAdditionalInfo = {
     __typename?: 'ItemAdditionalInfo';
@@ -292,123 +292,13 @@ export declare type Message = {
     status?: Maybe<Scalars['String']>;
     text?: Maybe<Scalars['String']>;
 };
-export declare type Mutation = {
-    __typename?: 'Mutation';
-    addToCart: OrderForm;
-    updateItems: OrderForm;
-    addItemOffering: OrderForm;
-    removeItemOffering: OrderForm;
-    addBundleItemAttachment: OrderForm;
-    removeBundleItemAttachment: OrderForm;
-    insertCoupon: OrderForm;
-    estimateShipping: OrderForm;
-    selectDeliveryOption: OrderForm;
-    selectPickupOption: OrderForm;
-    /**
-     * Changes the currently selected address in the shipping data
-     * of the OrderForm
-     */
-    updateSelectedAddress: OrderForm;
-    savePaymentToken?: Maybe<SavePaymentTokenPayload>;
-    updateOrderFormProfile: OrderForm;
-    updateClientPreferencesData: OrderForm;
-    updateOrderFormPayment: OrderForm;
-    setManualPrice: OrderForm;
-    updateItemsOrdination: OrderForm;
-    clearOrderFormMessages: OrderForm;
-    updateOrderFormOpenTextField: OrderForm;
-    updateOrderFormMarketingData: OrderForm;
-};
-export declare type MutationAddToCartArgs = {
-    orderFormId?: Maybe<Scalars['ID']>;
-    items?: Maybe<Array<Maybe<ItemInput>>>;
-    marketingData?: Maybe<MarketingDataInput>;
-    salesChannel?: Maybe<Scalars['String']>;
-};
-export declare type MutationUpdateItemsArgs = {
-    orderFormId?: Maybe<Scalars['ID']>;
-    orderItems?: Maybe<Array<Maybe<ItemInput>>>;
-    splitItem?: Maybe<Scalars['Boolean']>;
-};
-export declare type MutationAddItemOfferingArgs = {
-    orderFormId?: Maybe<Scalars['ID']>;
-    offeringInput?: Maybe<OfferingInput>;
-};
-export declare type MutationRemoveItemOfferingArgs = {
-    orderFormId?: Maybe<Scalars['ID']>;
-    offeringInput?: Maybe<OfferingInput>;
-};
-export declare type MutationAddBundleItemAttachmentArgs = {
-    orderFormId?: Maybe<Scalars['ID']>;
-    bundleItemAttachmentInput?: Maybe<BundleItemAttachmentInput>;
-};
-export declare type MutationRemoveBundleItemAttachmentArgs = {
-    orderFormId?: Maybe<Scalars['ID']>;
-    bundleItemAttachmentInput?: Maybe<BundleItemAttachmentInput>;
-};
-export declare type MutationInsertCouponArgs = {
-    orderFormId?: Maybe<Scalars['ID']>;
-    text?: Maybe<Scalars['String']>;
-};
-export declare type MutationEstimateShippingArgs = {
-    orderFormId?: Maybe<Scalars['ID']>;
-    address?: Maybe<AddressInput>;
-};
-export declare type MutationSelectDeliveryOptionArgs = {
-    orderFormId?: Maybe<Scalars['ID']>;
-    deliveryOptionId?: Maybe<Scalars['String']>;
-};
-export declare type MutationSelectPickupOptionArgs = {
-    orderFormId?: Maybe<Scalars['ID']>;
-    pickupOptionId?: Maybe<Scalars['String']>;
-    itemId?: Maybe<Scalars['String']>;
-};
-export declare type MutationUpdateSelectedAddressArgs = {
-    orderFormId?: Maybe<Scalars['ID']>;
-    input: AddressInput;
-};
-export declare type MutationSavePaymentTokenArgs = {
-    orderFormId?: Maybe<Scalars['ID']>;
-    paymentTokens?: Maybe<Array<Maybe<PaymentToken>>>;
-};
-export declare type MutationUpdateOrderFormProfileArgs = {
-    orderFormId?: Maybe<Scalars['ID']>;
-    input: UserProfileInput;
-};
-export declare type MutationUpdateClientPreferencesDataArgs = {
-    orderFormId?: Maybe<Scalars['ID']>;
-    input: ClientPreferencesDataInput;
-};
-export declare type MutationUpdateOrderFormPaymentArgs = {
-    orderFormId?: Maybe<Scalars['ID']>;
-    input: PaymentDataInput;
-};
-export declare type MutationSetManualPriceArgs = {
-    orderFormId?: Maybe<Scalars['ID']>;
-    input: ManualPriceInput;
-};
-export declare type MutationUpdateItemsOrdinationArgs = {
-    orderFormId?: Maybe<Scalars['ID']>;
-    ascending: Scalars['Boolean'];
-    criteria: ItemsOrdinationCriteria;
-};
-export declare type MutationClearOrderFormMessagesArgs = {
-    orderFormId?: Maybe<Scalars['ID']>;
-};
-export declare type MutationUpdateOrderFormOpenTextFieldArgs = {
-    orderFormId?: Maybe<Scalars['ID']>;
-    input: OrderFormOpenTextInput;
-};
-export declare type MutationUpdateOrderFormMarketingDataArgs = {
-    input: MarketingDataInput;
-};
 export declare type Offering = {
     __typename?: 'Offering';
     id: Scalars['String'];
     name: Scalars['String'];
     price: Scalars['Int'];
     type: Scalars['String'];
-    attachmentOfferings: Array<AttachmentOffering>;
+    attachmentOfferings: AttachmentOffering[];
 };
 export declare type OfferingInput = {
     itemIndex: Scalars['Int'];
@@ -422,14 +312,14 @@ export declare type OpenTextField = {
 export declare type OrderForm = {
     __typename?: 'OrderForm';
     id: Scalars['ID'];
-    items: Array<Item>;
+    items: Item[];
     canEditData: Scalars['Boolean'];
     loggedIn: Scalars['Boolean'];
     userProfileId?: Maybe<Scalars['String']>;
     userType?: Maybe<UserType>;
     shipping: Shipping;
     marketingData: MarketingData;
-    totalizers: Array<Totalizer>;
+    totalizers: Totalizer[];
     value: Scalars['Float'];
     messages: OrderFormMessages;
     paymentData: PaymentData;
@@ -441,8 +331,8 @@ export declare type OrderForm = {
 };
 export declare type OrderFormMessages = {
     __typename?: 'OrderFormMessages';
-    couponMessages: Array<Message>;
-    generalMessages: Array<Message>;
+    couponMessages: Message[];
+    generalMessages: Message[];
 };
 export declare type OrderFormOpenTextInput = {
     value?: Maybe<Scalars['String']>;
@@ -459,14 +349,14 @@ export declare type Payment = {
 };
 export declare type PaymentData = {
     __typename?: 'PaymentData';
-    installmentOptions: Array<InstallmentOption>;
-    paymentSystems: Array<PaymentSystem>;
-    payments: Array<Payment>;
-    availableAccounts: Array<AvailableAccount>;
+    installmentOptions: InstallmentOption[];
+    paymentSystems: PaymentSystem[];
+    payments: Payment[];
+    availableAccounts: AvailableAccount[];
     isValid: Scalars['Boolean'];
 };
 export declare type PaymentDataInput = {
-    payments: Array<PaymentInput>;
+    payments: PaymentInput[];
 };
 export declare type PaymentInput = {
     hasDefaultBillingAddress?: Maybe<Scalars['Boolean']>;
@@ -508,7 +398,7 @@ export declare type PickupOption = {
     additionalInfo?: Maybe<Scalars['String']>;
     storeDistance?: Maybe<Scalars['Float']>;
     transitTime: Scalars['String'];
-    businessHours: Array<BusinessHour>;
+    businessHours: BusinessHour[];
 };
 export declare type PriceTag = {
     __typename?: 'PriceTag';
@@ -518,24 +408,6 @@ export declare type PriceTag = {
     ratesAndBenefitsIdentifier?: Maybe<RatesAndBenefitsIdentifier>;
     rawValue?: Maybe<Scalars['Float']>;
     value?: Maybe<Scalars['Int']>;
-};
-export declare type Query = {
-    __typename?: 'Query';
-    getCardSessionId?: Maybe<Scalars['String']>;
-    orderForm: OrderForm;
-    checkoutProfile?: Maybe<CheckoutProfile>;
-    shippingSLA?: Maybe<Shipping>;
-};
-export declare type QueryOrderFormArgs = {
-    orderFormId?: Maybe<Scalars['ID']>;
-};
-export declare type QueryCheckoutProfileArgs = {
-    email: Scalars['String'];
-};
-export declare type QueryShippingSlaArgs = {
-    items?: Maybe<Array<Maybe<ShippingItem>>>;
-    postalCode?: Maybe<Scalars['String']>;
-    country?: Maybe<Scalars['String']>;
 };
 export declare type RatesAndBenefitsIdentifier = {
     __typename?: 'RatesAndBenefitsIdentifier';
@@ -558,8 +430,8 @@ export declare type SavePaymentTokenPayload = {
 export declare type Shipping = {
     __typename?: 'Shipping';
     countries?: Maybe<Array<Maybe<Scalars['String']>>>;
-    deliveryOptions: Array<DeliveryOption>;
-    pickupOptions: Array<PickupOption>;
+    deliveryOptions: DeliveryOption[];
+    pickupOptions: PickupOption[];
     selectedAddress?: Maybe<Address>;
     availableAddresses?: Maybe<Array<Maybe<Address>>>;
     isValid: Scalars['Boolean'];
